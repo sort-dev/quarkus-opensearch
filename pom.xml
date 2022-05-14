@@ -19,6 +19,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.version>2.9.0.Final</quarkus.version>
+    <opensearch.version>1.3.2</opensearch.version>
+    <opensearch-javaclient.version>1.0.0</opensearch-javaclient.version>
+    <jackson.version>2.13.2</jackson.version>
+    <jackson-kotlin.version>2.13.2</jackson-kotlin.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
   <dependencyManagement>
