@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.github.sort-dev.quarkus-opensearch-client</groupId>
-    <artifactId>opensearch-client-parent</artifactId>
+    <groupId>com.github.sort-dev</groupId>
+    <artifactId>quarkus-opensearch-client-parent</artifactId>
     <version>main-SNAPSHOT</version>
   </parent>
-  <artifactId>opensearch-client-integration-tests</artifactId>
+  <artifactId>quarkus-opensearch-client-integration-tests</artifactId>
   <name>Opensearch Client - Integration Tests</name>
   <dependencies>
     <dependency>
