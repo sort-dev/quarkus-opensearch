@@ -195,8 +195,11 @@ public class DevServicesOpenSearchProcessor {
             if (config.serviceName != null) {
                 container.withLabel(DEV_SERVICE_LABEL, config.serviceName);
             }
-
-            container.withExposedPorts(config.port.orElse(OPENSEARCH_PORT));
+            if (config.port.isPresent()) {
+                container.setPortBindings(List.of(config.port.get() + ":" + OPENSEARCH_PORT));
+            } else {
+                container.withExposedPorts(OPENSEARCH_PORT);
+            }
 
             timeout.ifPresent(container::withStartupTimeout);
             container.addEnv("OPENSEARCH_JAVA_OPTS", config.javaOpts);
@@ -211,6 +214,7 @@ public class DevServicesOpenSearchProcessor {
             container.start();
 
             var addr = container.getHost() + ":" + container.getMappedPort(OPENSEARCH_PORT);
+
             return new DevServicesResultBuildItem.RunningDevService(OpenSearchClientProcessor.FEATURE,
                     container.getContainerId(),
                     container::close,
