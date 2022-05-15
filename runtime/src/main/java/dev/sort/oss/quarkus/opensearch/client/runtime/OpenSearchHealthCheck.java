@@ -1,7 +1,5 @@
 package dev.sort.oss.quarkus.opensearch.client.runtime;
 
-import io.vertx.core.json.JsonObject;
-import org.apache.http.util.EntityUtils;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.HealthCheckResponseBuilder;

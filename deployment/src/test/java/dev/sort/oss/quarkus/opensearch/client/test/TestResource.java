@@ -1,7 +1,6 @@
 package dev.sort.oss.quarkus.opensearch.client.test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,10 +10,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
-import org.apache.http.util.EntityUtils;
-
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
