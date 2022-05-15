@@ -195,9 +195,9 @@ public class DevServicesOpenSearchProcessor {
             if (config.serviceName != null) {
                 container.withLabel(DEV_SERVICE_LABEL, config.serviceName);
             }
-            if (config.port.isPresent()) {
-                container.setPortBindings(List.of(config.port.get() + ":" + config.port.get()));
-            }
+
+            container.withExposedPorts(config.port.orElse(OPENSEARCH_PORT));
+
             timeout.ifPresent(container::withStartupTimeout);
             container.addEnv("OPENSEARCH_JAVA_OPTS", config.javaOpts);
             container.addEnv("discovery.type", "single-node");
@@ -205,7 +205,7 @@ public class DevServicesOpenSearchProcessor {
             container.addEnv("DISABLE_SECURITY_PLUGIN", "true");
 
             container.setWaitStrategy((new HttpWaitStrategy())
-                    .forPort(9200)
+                    .forPort(config.port.orElse(OPENSEARCH_PORT))
                     .forStatusCodeMatching(response -> response == 200 || response == 401));
 
             container.start();
