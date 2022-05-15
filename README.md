@@ -6,6 +6,9 @@ This is by far not fully configurable and is just a base implementation based of
 
 Releases are available from JitPack: https://jitpack.io/#sort-dev/quarkus-opensearch-client
 
-Snapshot dependency: `com.github.sort-dev:quarkus-opensearch-client:main-SNAPSHOT`
+Latest release dependency is:
+```text
+com.github.sort-dev:quarkus-opensearch:0.1.1
+```
 
 !! Work in Progress !!
