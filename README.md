@@ -8,7 +8,7 @@ Releases are available from JitPack: https://jitpack.io/#sort-dev/quarkus-opense
 
 Latest release dependency is:
 ```text
-com.github.sort-dev:quarkus-opensearch:0.1.1
+com.github.sort-dev:quarkus-opensearch:0.1.4
 ```
 
 !! Work in Progress !!
