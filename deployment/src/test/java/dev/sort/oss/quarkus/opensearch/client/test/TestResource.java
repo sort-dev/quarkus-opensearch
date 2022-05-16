@@ -15,6 +15,7 @@ import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.search.Hit;
 
 @Path("/fruits")
 public class TestResource {
@@ -23,14 +24,16 @@ public class TestResource {
 
     @POST
     public void index(Fruit fruit) throws IOException {
-        osClient.index(new IndexRequest.Builder<Fruit>().index("fruits").id(fruit.id).refresh(Refresh.True).document(fruit).build());
+        osClient.index(i -> i.index("fruits").id(fruit.id).refresh(Refresh.True).document(fruit));
     }
 
     @GET
     @Path("/search")
     public List<Fruit> search(@QueryParam("term") String term, @QueryParam("match") String match) throws IOException {
-        var response = osClient.search(new SearchRequest.Builder().index("fruits").query(QueryBuilders.matchAll().build()._toQuery()).build(), Fruit.class);
-        return response.hits().hits().stream().map(h -> h.source()).collect(Collectors.toList());
+        var response =
+                osClient.search(b -> b.index("fruits").query(q -> q.matchAll(ma -> ma)), Fruit.class);
+
+        return response.hits().hits().stream().map(Hit::source).collect(Collectors.toList());
     }
 
     public static class Fruit {
