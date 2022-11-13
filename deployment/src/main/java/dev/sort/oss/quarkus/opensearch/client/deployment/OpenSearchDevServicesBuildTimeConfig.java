@@ -29,7 +29,7 @@ public class OpenSearchDevServicesBuildTimeConfig {
      * The container image to use.
      * Defaults to the OpenSearch image provided by the OpenSearch project.
      */
-    @ConfigItem(defaultValue = "opensearchproject/opensearch:1.3.2")
+    @ConfigItem(defaultValue = "opensearchproject/opensearch:2.3.0")
     public String imageName;
 
     /**
