@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.sort-dev.quarkus-opensearch</groupId>
     <artifactId>opensearch-parent</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
   </parent>
   <artifactId>opensearch</artifactId>
   <name>Opensearch Client - Runtime</name>
@@ -18,6 +18,10 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-health</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-kotlin</artifactId>
     </dependency>
     <dependency>
       <groupId>org.opensearch.client</groupId>

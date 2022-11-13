@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.sort-dev.quarkus-opensearch</groupId>
     <artifactId>opensearch-parent</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
   </parent>
   <artifactId>opensearch-deployment</artifactId>
   <name>Opensearch Client - Deployment</name>
@@ -13,6 +13,10 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc-deployment</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-kotlin-deployment</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
