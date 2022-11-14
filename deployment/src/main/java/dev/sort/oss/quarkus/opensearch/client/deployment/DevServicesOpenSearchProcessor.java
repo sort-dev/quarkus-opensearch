@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 import org.jboss.logging.Logger;
+import org.opensearch.testcontainers.OpensearchContainer;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HttpWaitStrategy;
 import org.testcontainers.utility.DockerImageName;
@@ -190,22 +191,23 @@ public class DevServicesOpenSearchProcessor {
 
         // Starting the server
         final Supplier<DevServicesResultBuildItem.RunningDevService> defaultOpenSearchSupplier = () -> {
-            var container = new GenericContainer<>(DockerImageName.parse(config.imageName));
-            ConfigureUtil.configureSharedNetwork(container, "opensearch");
+            var container = new OpensearchContainer(DockerImageName.parse(config.imageName));
+
+            // official dev container sets this internally and cannot be set here
+            // ConfigureUtil.configureSharedNetwork(container, "opensearch");
+
             if (config.serviceName != null) {
                 container.withLabel(DEV_SERVICE_LABEL, config.serviceName);
             }
             if (config.port.isPresent()) {
                 container.setPortBindings(List.of(config.port.get() + ":" + OPENSEARCH_PORT));
-            } else {
-                container.withExposedPorts(OPENSEARCH_PORT);
             }
 
             timeout.ifPresent(container::withStartupTimeout);
             container.addEnv("OPENSEARCH_JAVA_OPTS", config.javaOpts);
             container.addEnv("discovery.type", "single-node");
             container.addEnv("DISABLE_INSTALL_DEMO_CONFIG", "true");
-            container.addEnv("DISABLE_SECURITY_PLUGIN", "true");
+            // container.addEnv("DISABLE_SECURITY_PLUGIN", "true");
 
             container.setWaitStrategy((new HttpWaitStrategy())
                     .forPort(config.port.orElse(OPENSEARCH_PORT))
@@ -213,7 +215,7 @@ public class DevServicesOpenSearchProcessor {
 
             container.start();
 
-            var addr = container.getHost() + ":" + container.getMappedPort(OPENSEARCH_PORT);
+            var addr = container.getHttpHostAddress(); // container.getHost() + ":" + container.getMappedPort(OPENSEARCH_PORT);
 
             return new DevServicesResultBuildItem.RunningDevService(OpenSearchClientProcessor.FEATURE,
                     container.getContainerId(),

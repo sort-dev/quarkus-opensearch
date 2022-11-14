@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.sort-dev.quarkus-opensearch</groupId>
     <artifactId>opensearch-parent</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
   </parent>
   <artifactId>opensearch</artifactId>
   <name>Opensearch Client - Runtime</name>
@@ -32,6 +32,11 @@
       <groupId>org.opensearch.client</groupId>
       <artifactId>opensearch-java</artifactId>
       <version>${opensearch-javaclient.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opensearch</groupId>
+      <artifactId>opensearch-testcontainers</artifactId>
+      <version>${opensearch-testcontainer.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
