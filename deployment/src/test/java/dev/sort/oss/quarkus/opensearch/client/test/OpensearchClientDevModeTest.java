@@ -30,5 +30,10 @@ public class OpensearchClientDevModeTest {
                     .then()
                     .statusCode(200)
                     .body(equalTo("[{\"id\":\"1\",\"name\":\"banana\",\"color\":\"yellow\"}]"));
+
+            RestAssured.when().get("/fruits/search_async?term=color&match=yellow")
+                    .then()
+                    .statusCode(200)
+                    .body(equalTo("[{\"id\":\"1\",\"name\":\"banana\",\"color\":\"yellow\"}]"));
         }
     }

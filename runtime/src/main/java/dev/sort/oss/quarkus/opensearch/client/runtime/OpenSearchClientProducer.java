@@ -12,6 +12,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 
@@ -30,9 +31,11 @@ public class OpenSearchClientProducer {
 
     private RestClientTransport transport;
 
-    @Produces
-    @Singleton
-    public OpenSearchClient openSearchJavaClient() {
+    private void ensureTransport() {
+        if (this.transport != null) {
+           return;
+        }
+
         var credentialsProvider = new BasicCredentialsProvider();
         if (config.username.isPresent()) {
             credentialsProvider.setCredentials(AuthScope.ANY,
@@ -53,7 +56,20 @@ public class OpenSearchClientProducer {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         this.transport = new RestClientTransport(restClient, new JacksonJsonpMapper(mapper));
+    }
+
+    @Produces
+    @Singleton
+    public OpenSearchClient openSearchJavaClient() {
+        ensureTransport();
         return new OpenSearchClient(this.transport);
+    }
+
+    @Produces
+    @Singleton
+    public OpenSearchAsyncClient openSearchJavaAsyncClient() {
+        ensureTransport();
+        return new OpenSearchAsyncClient(this.transport);
     }
 
     @PreDestroy

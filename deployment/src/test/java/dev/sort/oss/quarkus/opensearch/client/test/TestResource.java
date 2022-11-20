@@ -2,6 +2,7 @@ package dev.sort.oss.quarkus.opensearch.client.test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
+import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
@@ -21,6 +23,9 @@ import org.opensearch.client.opensearch.core.search.Hit;
 public class TestResource {
     @Inject
     OpenSearchClient osClient;
+
+    @Inject
+    OpenSearchAsyncClient osAsyncClient;
 
     @POST
     public void index(Fruit fruit) throws IOException {
@@ -34,6 +39,15 @@ public class TestResource {
                 osClient.search(b -> b.index("fruits").query(q -> q.matchAll(ma -> ma)), Fruit.class);
 
         return response.hits().hits().stream().map(Hit::source).collect(Collectors.toList());
+    }
+
+    @GET
+    @Path("/search_async")
+    public CompletionStage<List<Fruit>> searchAsync(@QueryParam("term") String term, @QueryParam("match") String match) throws IOException {
+        return osAsyncClient.search(b -> b.index("fruits").query(q -> q.matchAll(ma -> ma)), Fruit.class)
+                .thenApply(response ->
+                        response.hits().hits().stream().map(Hit::source).collect(Collectors.toList())
+                );
     }
 
     public static class Fruit {

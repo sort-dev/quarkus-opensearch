@@ -16,7 +16,9 @@ Releases are available from JitPack: https://jitpack.io/#sort-dev/quarkus-opense
 
 Latest release dependency is:
 ```text
-com.github.sort-dev:quarkus-opensearch:0.2.2
+com.github.sort-dev:quarkus-opensearch:0.3.0
 ```
+
+Can inject either `OpenSearchClient` or `OpenSearchAsyncClient`
 
 !! Work in Progress !!
