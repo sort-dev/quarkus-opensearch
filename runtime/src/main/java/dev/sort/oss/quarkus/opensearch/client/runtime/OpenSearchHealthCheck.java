@@ -1,14 +1,13 @@
 package dev.sort.oss.quarkus.opensearch.client.runtime;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 import org.eclipse.microprofile.health.Readiness;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.HealthStatus;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 @Readiness
 @ApplicationScoped
