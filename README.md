@@ -32,7 +32,7 @@ com.github.sort-dev:quarkus-opensearch:0.3.0
 or for experimental Quarkus 3.0.0-Alpha2 version:
 
 ```text
-com.github.sort-dev:quarkus-opensearch:0.5.2
+com.github.sort-dev:quarkus-opensearch:0.5.3
 ```
 
 Can inject either `OpenSearchClient` or `OpenSearchAsyncClient`
