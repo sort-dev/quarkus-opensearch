@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.sort-dev.quarkus-opensearch</groupId>
     <artifactId>opensearch-parent</artifactId>
-    <version>0.5.0</version>
+    <version>0.5.1</version>
     <packaging>pom</packaging>
     <name>Opensearch Client - Parent</name>
     <modules>
@@ -19,13 +19,13 @@
         <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus.version>3.0.0.Alpha1</quarkus.version>
-        <opensearch.version>2.3.0</opensearch.version>
+        <quarkus.version>3.0.0.Alpha2</quarkus.version>
+        <opensearch.version>2.4.1</opensearch.version>
         <opensearch-javaclient.version>2.1.0</opensearch-javaclient.version>
         <opensearch-testcontainer.version>2.0.0</opensearch-testcontainer.version>
         <jackson.version>2.13.4</jackson.version>
         <jackson-kotlin.version>2.13.4</jackson-kotlin.version>
-        <kotlin.version>1.7.21</kotlin.version>
+        <kotlin.version>1.8.0-RC2</kotlin.version>
         <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
     </properties>
     <dependencyManagement>
