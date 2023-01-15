@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.sort-dev.quarkus-opensearch</groupId>
     <artifactId>opensearch-parent</artifactId>
-    <version>0.3.1</version>
+    <version>0.3.2</version>
   </parent>
   <artifactId>opensearch-deployment</artifactId>
   <name>Opensearch Client - Deployment</name>
