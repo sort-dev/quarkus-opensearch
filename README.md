@@ -34,13 +34,13 @@ com.github.sort-dev:quarkus-opensearch:0.3.0
 or for Quarkus 2.15.0 is:
 
 ```text
-com.github.sort-dev:quarkus-opensearch:0.3.1
+com.github.sort-dev:quarkus-opensearch:0.3.2
 ```
 
 or for experimental Quarkus 3.0.0-Alpha2 version:
 
 ```text
-com.github.sort-dev:quarkus-opensearch:0.5.4
+com.github.sort-dev:quarkus-opensearch:0.5.5
 ```
 
 Can inject either `OpenSearchClient` or `OpenSearchAsyncClient`
