@@ -4,6 +4,7 @@ import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @ConfigRoot(name = "opensearch.devservices", phase = ConfigPhase.BUILD_TIME)
@@ -65,4 +66,22 @@ public class OpenSearchDevServicesBuildTimeConfig {
      */
     @ConfigItem(defaultValue = "opensearch")
     public String serviceName;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OpenSearchDevServicesBuildTimeConfig that = (OpenSearchDevServicesBuildTimeConfig) o;
+        return shared == that.shared
+                && enabled.equals(that.enabled)
+                && port.equals(that.port)
+                && imageName.equals(that.imageName)
+                && javaOpts.equals(that.javaOpts)
+                && serviceName.equals(that.serviceName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(enabled, port, imageName, javaOpts, shared, serviceName);
+    }
 }
